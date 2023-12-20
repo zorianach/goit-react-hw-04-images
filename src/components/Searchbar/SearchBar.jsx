@@ -20,7 +20,6 @@ const SearchBar = ({onSubmit}) => {
             // const { onSubmit } = this.props;
 
             // повідомлення
-
             if (textQuery === '') {
                 Notify.info('Enter your request, please!', paramsForNotify);
                 return;

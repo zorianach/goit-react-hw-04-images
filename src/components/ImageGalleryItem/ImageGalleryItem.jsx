@@ -10,7 +10,7 @@ const ImageGalleryItem = ({item, openModal}) => {
     <ImageItem
       onClick={e => {
         e.preventDefault();
-        openModal(largeImageURL, tags);
+        openModal({largeImageURL, tags});
       }}
     >
       <Image src={webformatURL} alt={tags} loading="lazy" />
