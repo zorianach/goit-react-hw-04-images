@@ -2,7 +2,9 @@ import { ModalContent, Overlay } from "./Modal.styled";
 import { useEffect } from 'react';
 
 
-const Modal = ({selectedPhoto:{imgUrl, tag}, onClose}) => {
+const Modal = ({selectedPhoto, onClose}) => {
+    const {largeImageURL, tag} = selectedPhoto;
+    console.log(selectedPhoto);
 
     useEffect(() => {
         // клавіша Escape
@@ -25,7 +27,7 @@ const Modal = ({selectedPhoto:{imgUrl, tag}, onClose}) => {
         return (
             <Overlay onClick={onClickOverlay}>
                 <ModalContent>
-                    <img src={imgUrl} alt={tag}/>
+                    <img src={largeImageURL} alt={tag}/>
                 </ModalContent>
             </Overlay>)
 }

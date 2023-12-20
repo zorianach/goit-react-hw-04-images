@@ -19,7 +19,7 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [buttonLoadMore, setButtonLoadMore] = useState(false)
   const [showModal, setShowModal] = useState(false)
-  const [selectedPhoto, setSelectedPhoto] = useState([])
+  const [selectedPhoto, setSelectedPhoto] = useState('');
   // const [imgUrl, setImgUrl] = useState('')
   // const [tag, setTag] = useState('');
 
@@ -34,8 +34,8 @@ const App = () => {
         const response = await getImages(search, page)
         //   console.log(data);
           const { totalHits, hits } = response;
-          const totalPage = Math.floor(totalHits / perPage);
-          // console.log(totalPage);
+          const totalPage = Math.ceil(totalHits / perPage);
+          console.log(totalPage);
           if (totalHits === 0) {
             return Notify.failure('Sorry, there are no images matching your search query. Please try again.', paramsForNotify);
           }
@@ -86,9 +86,10 @@ const App = () => {
     }
 
     //відкрити модалку
-    const onOpenModal = (images) => {
+    const onOpenModal = (photo) => {
+      // console.log(photo)
       setShowModal(true);
-      setSelectedPhoto(images);
+      setSelectedPhoto(photo);
       // setImgUrl(imgUrl);
       // setTag(tag);
     };
@@ -98,6 +99,7 @@ const App = () => {
     //   const {photos, buttonLoadMore, loading, showModal, selectedPhoto, imgUrl, tags} = this.state;
 
       return (
+        // console.log(selectedPhoto),
         <>
         <SearchBar onSubmit={handleSubmit}/>
         <AppContainer>
@@ -105,7 +107,7 @@ const App = () => {
         {loading && <Loader />}
         {buttonLoadMore && <Button onClick={handleLoadMore} />}
         {showModal && <Modal selectedPhoto={selectedPhoto} onClose={toggleModal}>
-          {/* <img src={imgUrl} alt={tag}/> */}
+          {/* <img src={selectedPhoto} alt=''/> */}
           </Modal>}
         </AppContainer>
         </>
